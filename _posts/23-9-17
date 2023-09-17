@@ -1,0 +1,12 @@
+##这是我的第一条博客
+
+  
+#include <stdio.h>
+void main()
+{
+    printf ("Hello World\n");
+    system("pause");
+}
+
+
+print('Hello World')
