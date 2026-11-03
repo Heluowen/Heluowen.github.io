@@ -1,0 +1,34 @@
+<section class="hero">
+      <div class="hero__card glass">
+        <div class="hero__avatar">
+          <img src="{{ site.avatar }}" alt="{{ site.name }}" width="104" height="104" loading="eager" />
+        </div>
+
+        <h1 class="hero__name">{{ site.name }}</h1>
+        <p class="hero__tagline">{{ site.description }}</p>
+        <p class="hero__intro">{{ site.intro }}</p>
+
+        {% if site.tags %}
+        <ul class="chips">
+          {% for t in site.tags %}
+          <li class="chip">{{ t }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#projects">
+            看看我的项目
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7"></path></svg>
+          </a>
+          <a class="btn" href="#posts">阅读博客</a>
+          <a class="btn btn--ghost" href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener">
+            {% include icon-github.html %} GitHub
+          </a>
+        </div>
+      </div>
+
+      <a class="hero__scroll" href="#projects" aria-label="向下滚动">
+        <span></span>
+      </a>
+    </section>

@@ -2,11 +2,13 @@
 layout: default
 ---
 
-<article class="page">
+<article class="article">
+  <header class="article__head">
+    <a class="article__back" href="{{ site.baseurl }}/">← 返回首页</a>
+    <h1>{{ page.title }}</h1>
+  </header>
 
-  <h1>{{ page.title }}</h1>
-
-  <div class="entry">
+  <div class="article__body">
     {{ content }}
   </div>
 </article>

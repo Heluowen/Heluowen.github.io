@@ -1,0 +1,40 @@
+<section class="section" id="projects">
+      <div class="section__head reveal">
+        <h2>项目<span class="section__count">{{ site.data.projects | size }}</span></h2>
+        <a class="section__more" href="https://github.com/{{ site.github_username }}?tab=repositories" target="_blank" rel="noopener">全部仓库 ↗</a>
+      </div>
+
+      <div class="grid">
+        {% for p in site.data.projects %}
+          {% assign proj_url = p.url %}
+          {% if proj_url == nil or proj_url == "" %}
+            {% capture proj_url %}https://github.com/{{ site.github_username }}/{{ p.repo }}{% endcapture %}
+          {% endif %}
+          <a class="card proj{% if p.featured %} proj--featured{% endif %} reveal"
+             href="{{ proj_url | strip }}"
+             target="_blank" rel="noopener"
+             data-repo="{{ p.repo }}">
+            <span class="proj__spot" aria-hidden="true"></span>
+
+            <h3 class="proj__name">
+              {{ p.name }}
+              <svg class="proj__arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"></path></svg>
+            </h3>
+
+            <p class="proj__desc">{{ p.description }}</p>
+
+            {% if p.tags %}
+            <ul class="proj__tags">
+              {% for t in p.tags %}<li>{{ t }}</li>{% endfor %}
+            </ul>
+            {% endif %}
+
+            <div class="proj__meta">
+              <span class="lang"><i style="background: {{ p.color | default: '#8b93a7' }};"></i>{{ p.language }}</span>
+              <span class="proj__stat" data-field="stars">★ {{ p.stars | default: 0 }}</span>
+              <span class="proj__stat" data-field="updated">{{ p.updated }}</span>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </section>

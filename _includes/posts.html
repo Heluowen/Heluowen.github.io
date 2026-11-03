@@ -1,0 +1,24 @@
+<section class="section" id="posts">
+      <div class="section__head reveal">
+        <h2>随笔<span class="section__count">{{ site.posts | size }}</span></h2>
+        <a class="section__more" href="{{ site.baseurl }}/feed.xml">RSS ↗</a>
+      </div>
+
+      {% if site.posts.size > 0 %}
+      <div class="grid grid--posts">
+        {% for post in site.posts limit: 9 %}
+        <a class="card post-card reveal" href="{{ site.baseurl }}{{ post.url }}">
+          <time class="post-card__date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
+          <h3 class="post-card__title">{{ post.title }}</h3>
+          <p class="post-card__excerpt">{{ post.excerpt | strip_html | normalize_whitespace | truncate: 96 }}</p>
+          <span class="post-card__more">
+            阅读全文
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7"></path></svg>
+          </span>
+        </a>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p class="empty reveal">还没有文章，去 <code>_posts/</code> 里写第一篇吧。</p>
+      {% endif %}
+    </section>

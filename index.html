@@ -2,17 +2,33 @@
 layout: default
 ---
 
-<div class="posts">
-  {% for post in site.posts %}
-    <article class="post">
+{% include hero.html %}
 
-      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
+{% assign total_stars = 0 %}
+{% for p in site.data.projects %}
+  {% assign total_stars = total_stars | plus: p.stars %}
+{% endfor %}
 
-      <div class="entry">
-        {{ post.excerpt }}
-      </div>
+{% if site.projects.stats %}
+<section class="stats reveal">
+  <div class="stat">
+    <span class="stat__num">{{ site.data.projects | size }}</span>
+    <span class="stat__label">个公开项目</span>
+  </div>
+  <div class="stat">
+    <span class="stat__num" id="statStars">{{ total_stars }}</span>
+    <span class="stat__label">颗星星</span>
+  </div>
+  <div class="stat">
+    <span class="stat__num">{{ site.posts | size }}</span>
+    <span class="stat__label">篇随笔</span>
+  </div>
+  <div class="stat">
+    <span class="stat__num">∞</span>
+    <span class="stat__label">杯咖啡</span>
+  </div>
+</section>
+{% endif %}
 
-      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
-    </article>
-  {% endfor %}
-</div>
+{% include projects.html %}
+{% include posts.html %}

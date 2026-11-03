@@ -2,16 +2,22 @@
 layout: default
 ---
 
-<article class="post">
-  <h1>{{ page.title }}</h1>
+<article class="article">
+  <header class="article__head">
+    <a class="article__back" href="{{ site.baseurl }}/">← 返回首页</a>
+    <h1>{{ page.title }}</h1>
+    {% if page.date %}
+    <time class="article__date" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y 年 %-m 月 %-d 日" }}</time>
+    {% endif %}
+  </header>
 
-  <div class="entry">
+  <div class="article__body">
     {{ content }}
   </div>
 
-  <div class="date">
-    Written on {{ page.date | date: "%B %e, %Y" }}
-  </div>
+  <footer class="article__foot">
+    <a href="{{ site.baseurl }}/">← 回到首页</a>
+  </footer>
 
   {% include disqus.html %}
 </article>

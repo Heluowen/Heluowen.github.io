@@ -1,50 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
   <head>
-    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
+    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }}</title>
 
     {% include meta.html %}
 
-    <!--[if lt IE 9]>
-      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
     <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
-    <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
+    <link rel="icon" href="{{ site.avatar }}" />
+    <link rel="alternate" type="application/rss+xml" title="{{ site.name }}" href="{{ site.baseurl }}/feed.xml" />
 
-    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
+    {% assign bg_img = site.appearance.background.image %}
+    <script>document.documentElement.classList.add('js');</script>
+    <style>
+      :root {
+        --accent: {{ site.appearance.accent | default: "#22d3ee" }};
+        --accent-2: {{ site.appearance.accent_alt | default: "#a855f7" }};
+        --bg-overlay: {{ site.appearance.background.overlay | default: 62 }};
+        --bg-blur: {{ site.appearance.background.blur | default: 0 }}px;
+        --glass-blur: {{ site.appearance.glass.blur | default: 26 }}px;
+        --glass-alpha: {{ site.appearance.glass.opacity | default: 6 }};
+        {% if bg_img and bg_img != "" %}--bg-image: url("{{ bg_img | relative_url }}");{% endif %}
+      }
+    </style>
   </head>
 
-  <body>
-    <div class="wrapper-masthead">
-      <div class="container">
-        <header class="masthead clearfix">
-          <a href="{{ site.baseurl }}/" class="site-avatar"><img src="{{ site.avatar }}" /></a>
+  <body class="{% if page.layout == 'post' %}is-post{% endif %}{% if bg_img and bg_img != '' %} has-bg-image{% endif %}{% unless site.appearance.motion %} no-motion{% endunless %}">
 
-          <div class="site-info">
-            <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
-            <p class="site-description">{{ site.description }}</p>
-          </div>
-
-          <nav>
-            <a href="{{ site.baseurl }}/">Blog</a>
-            <a href="{{ site.baseurl }}/about">About</a>
-          </nav>
-        </header>
+    <!-- 背景层：照片 → 星云光斑 → 颗粒 → 压暗遮罩 → 渐隐 -->
+    <div class="bg" aria-hidden="true">
+      <div class="bg__photo" id="bgPhoto"></div>
+      <div class="bg__aurora">
+        <span class="blob blob--cyan"></span>
+        <span class="blob blob--violet"></span>
+        <span class="blob blob--teal"></span>
+        <span class="blob blob--blue"></span>
       </div>
+      <div class="bg__grain"></div>
+      <div class="bg__dim"></div>
+      <div class="bg__veil"></div>
     </div>
 
-    <div id="main" role="main" class="container">
+    <header class="nav" id="nav">
+      <div class="nav__inner">
+        <a class="nav__brand" href="{{ site.baseurl }}/">
+          <img src="{{ site.avatar }}" alt="" width="32" height="32" />
+          <span>{{ site.name }}</span>
+        </a>
+        <nav class="nav__links">
+          <a href="{{ site.baseurl }}/#projects">项目</a>
+          <a href="{{ site.baseurl }}/#posts">博客</a>
+          <a href="{{ site.baseurl }}/about/">关于</a>
+          <a class="nav__gh" href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener">
+            {% include icon-github.html %} GitHub
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" role="main">
       {{ content }}
-    </div>
+    </main>
 
-    <div class="wrapper-footer">
-      <div class="container">
-        <footer class="footer">
-          {% include svg-icons.html %}
-        </footer>
-      </div>
-    </div>
+    {% include footer.html %}
+
+    <button class="gear" id="gear" type="button" aria-label="背景设置" aria-expanded="false">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3.2"></circle>
+        <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.09A1.7 1.7 0 0 0 8.9 19.3a1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.7 15a1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.7 8.9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 9 4.7a1.7 1.7 0 0 0 1.03-1.56V3a2 2 0 1 1 4 0v.09A1.7 1.7 0 0 0 15 4.7a1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.3 9v.09A1.7 1.7 0 0 0 20.86 10H21a2 2 0 1 1 0 4h-.09A1.7 1.7 0 0 0 19.4 15z"></path>
+      </svg>
+    </button>
+
+    {% include background-panel.html %}
+
+    <script>
+      window.SITE = {
+        github: "{{ site.github_username }}",
+        refresh: {{ site.projects.refresh | jsonify }},
+        motion: {{ site.appearance.motion | jsonify }}
+      };
+    </script>
+    <script src="{{ site.baseurl }}/assets/js/site.js" defer></script>
 
     {% include analytics.html %}
   </body>

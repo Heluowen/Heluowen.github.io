@@ -1,0 +1,37 @@
+<div class="panel" id="bgPanel" hidden>
+      <div class="panel__head">
+        <strong>背景设置</strong>
+        <button class="panel__close" id="bgClose" type="button" aria-label="关闭">✕</button>
+      </div>
+
+      <label class="panel__drop" for="bgFile">
+        <input type="file" id="bgFile" accept="image/*" hidden />
+        <span class="panel__drop-title">选择一张本地图片</span>
+        <span class="panel__drop-sub">即时预览，只存在这台浏览器里</span>
+      </label>
+
+      <div class="panel__row">
+        <label for="bgOverlay">遮罩浓度</label>
+        <input type="range" id="bgOverlay" min="0" max="90" step="1" />
+        <output id="bgOverlayOut"></output>
+      </div>
+
+      <div class="panel__row">
+        <label for="bgBlur">背景模糊</label>
+        <input type="range" id="bgBlur" min="0" max="24" step="1" />
+        <output id="bgBlurOut"></output>
+      </div>
+
+      <div class="panel__actions">
+        <button id="bgCopy" type="button" class="panel__btn panel__btn--primary">复制配置</button>
+        <button id="bgClear" type="button" class="panel__btn">清空图片</button>
+        <button id="bgReset" type="button" class="panel__btn">恢复默认</button>
+      </div>
+
+      <p class="panel__hint" id="bgHint">
+        想让所有访客都看到：把图片放进 <code>images/backgrounds/</code>，
+        再用下面这 <strong>三行</strong>替换 <code>_config.yml</code> 里
+        <code>appearance:</code> → <code>background:</code> 下的同名三行。
+      </p>
+      <pre class="panel__code" id="bgCode"></pre>
+    </div>

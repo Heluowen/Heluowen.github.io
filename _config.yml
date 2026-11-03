@@ -1,85 +1,98 @@
 #
-# This file contains configuration flags to customize your site
+# 站点配置 —— Heluowen 个人主页
 #
 
-# Name of your site (displayed in the header)
+# 站点名称（导航、页脚、SEO 使用）
 name: Heluowen
 
-# Short bio or description (displayed in the header)
-description: 大学生
+# 一句话简介，显示在首屏名字下面
+description: 大学生 · 写点代码，做点好玩的东西
 
-# URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: https://raw.githubusercontent.com/barryclark/jekyll-now/master/images/jekyll-logo.png
+# 首屏更详细的一段自我介绍
+intro: 我叫河洛温，偶尔会在这折腾一切让我好奇的东西。这里放着我的项目和随笔。
+
+# 头像地址（想换成本地图片就写 /images/avatar.jpg）
+avatar: /images/avatar.jpg
+
+# GitHub 用户名：项目卡片、star 自动刷新、页脚链接都基于它
+github_username: Heluowen
+
+# 首屏技能 / 兴趣小标签
+tags:
+  - Python
+  - TypeScript
+  - AstrBot 插件
+  - 音游自制
 
 #
-# Flags below are optional
+# 外观
 #
+appearance:
+  accent: "#22d3ee"        # 主色（青）
+  accent_alt: "#a855f7"    # 副色（紫）
+  background:
+    # 背景图地址：把图片放进 images/backgrounds/，这里写 /images/backgrounds/文件名
+    # 留空则使用默认的星云渐变
+    image: /images/backgrounds/bg0.jpg
+    overlay: 30            # 图片上方的压暗遮罩浓度 0-90
+    blur: 0                # 背景图模糊程度 0-24（单位 px）
+  glass:
+    blur: 25               # 毛玻璃模糊半径
+    opacity: 6             # 玻璃层白色透明度（百分比，越大越不透明）
+  motion: true             # 关掉后停用滚动入场 / 视差 / 悬浮倾斜动画
 
-# Includes an icon in the footer for each username you enter
+#
+# 项目列表
+#
+projects:
+  refresh: true            # 打开页面后调 GitHub API 刷新 star / fork / 更新时间
+  stats: true              # 首屏是否显示数字条
+
+#
+# 页脚社交链接（留空即隐藏对应图标）
+#
 footer-links:
-  email: 15992219822@163.com
-  facebook:
-  flickr:
-  github: https://github.com/Heluowen/Heluowen.github.io
-  instagram:
-  linkedin:
-  pinterest:
-  rss: # just type anything here for a working RSS icon
-  twitter: jekyllrb
-  stackoverflow: # your stackoverflow profile, e.g. "users/50476/bart-kiers"
-  youtube: # channel/<your_long_string> or user/<user-name>
-  googleplus: # anything in your profile username that comes after plus.google.com/
+  email: heluowen0831@gmail.com
+  github: Heluowen
+  rss: true
 
-
-# Enter your Disqus shortname (not your username) to enable commenting on posts
-# You can find your shortname on the Settings page of your Disqus account
+# 文章评论（填 Disqus shortname 才会显示）
 disqus:
 
-# Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
+# Google Analytics 跟踪码
 google_analytics:
 
-# Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
-# Used for Sitemap.xml and your RSS feed
-url:
+# 站点 URL（sitemap、feed 用）
+url: https://heluowen.github.io
 
-# If you're hosting your site at a Project repository on GitHub pages
-# (http://yourusername.github.io/repository-name)
-# and NOT your User repository (http://yourusername.github.io)
-# then add in the baseurl here, like this: "/repository-name"
+# 如果是 project 仓库而不是 username.github.io，在这里填 /仓库名
 baseurl: ""
 
 #
-# !! You don't need to change any of the configuration flags below !!
+# !! 以下一般不需要改动 !!
 #
 
 permalink: /:title/
 
-# The release of Jekyll Now that you're using
-version: v1.2.0
-
-# Jekyll 3 now only supports Kramdown for Markdown
 kramdown:
-  # Use GitHub flavored markdown, including triple backtick fenced code blocks
   input: GFM
-  # Jekyll 3 and GitHub Pages now only support rouge for syntax highlighting
   syntax_highlighter: rouge
   syntax_highlighter_opts:
-    # Use existing pygments syntax highlighting css
     css_class: 'highlight'
 
-# Set the Sass partials directory, as we're using @imports
 sass:
-  style: :expanded # You might prefer to minify using :compressed
+  style: :expanded
 
-# Use the following plug-ins
 gems:
-  - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
-  - jekyll-feed # Create an Atom feed using the official Jekyll feed gem
+  - jekyll-sitemap
+  - jekyll-feed
 
-# Exclude these files from your production _site
 exclude:
   - Gemfile
   - Gemfile.lock
   - LICENSE
   - README.md
   - CNAME
+  - tools
+  - node_modules
+  - _preview

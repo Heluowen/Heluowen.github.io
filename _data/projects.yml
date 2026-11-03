@@ -1,0 +1,50 @@
+# 首页项目卡片的数据源
+#
+# 加一个项目 = 复制一段下面的结构改几行。
+# stars / forks / updated 只是「静态兜底值」，
+# 页面加载后会由 assets/js/site.js 调 GitHub API 自动刷新；
+# 想关掉刷新就把 _config.yml 里的 projects.refresh 改成 false。
+#
+# featured: true 的卡片会占两栏（宽卡），用来突出重点项目。
+
+- name: Token Dashboard
+  repo: astrbot_plugin_token_dashboard
+  description: 在 AstrBot 接入不同平台跑 Agent Bot 时，记录并查看每一次调用的 Token 用量与命中率。
+  language: Python
+  color: "#3572A5"
+  stars: 1
+  forks: 1
+  updated: 2026-11-03
+  tags: [AstrBot, 插件, Token 统计]
+  featured: true
+
+- name: 4K Otogeme
+  repo: 4K-otogeme
+  description: 一个纯网页实现的 4K 音游，浏览器打开就能玩。
+  language: TypeScript
+  color: "#3178c6"
+  stars: 0
+  forks: 0
+  updated: 2026-11-03
+  tags: [音游, Web Audio, Canvas]
+
+- name: Cloud Computing Lab
+  repo: cloud-computing-lab
+  description: 云计算课程的实验项目集合。
+  language: Python
+  color: "#3572A5"
+  stars: 0
+  forks: 0
+  updated: 2026-11-02
+  tags: [课程实验, 云服务]
+
+- name: Heluowen.github.io
+  repo: Heluowen.github.io
+  description: 就是你现在看到的这个主页，Jekyll + 深色毛玻璃，背景图可换。
+  language: SCSS
+  color: "#c6538c"
+  stars: 0
+  forks: 0
+  updated: 2023-09-17
+  tags: [Jekyll, GitHub Pages, 主页]
+  url: https://heluowen.github.io

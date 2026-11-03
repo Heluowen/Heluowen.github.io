@@ -1,0 +1,5 @@
+把喜欢的背景图放在这个目录里，然后在 _config.yml 里写上路径：
+
+appearance:
+  background:
+    image: /images/backgrounds/bg-01.jpg
