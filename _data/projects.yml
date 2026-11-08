@@ -38,6 +38,16 @@
   updated: 2026-11-02
   tags: [课程实验, 云服务]
 
+- name: CS-MCP
+  repo: CS-MCP
+  description: 一个用于让bot能实时读取CS赛事相关信息的AstrBot插件
+  language: python and rust
+  color: "#D172A5"
+  stars: 0
+  forks: 0
+  updated: 2026-11-8
+  tags: [AstrBot, 插件, CS赛事]
+  
 - name: Heluowen.github.io
   repo: Heluowen.github.io
   description: 就是你现在看到的这个主页，Jekyll + 深色毛玻璃，背景图可换。
@@ -48,3 +58,4 @@
   updated: 2023-09-17
   tags: [Jekyll, GitHub Pages, 主页]
   url: https://heluowen.github.io
+
